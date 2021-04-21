@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,8 +20,23 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('items', 'App\Http\Controllers\Api\ItemController@getAllItems');
-Route::get('items/{id}', 'App\Http\Controllers\Api\ItemController@getItem');
-Route::post('items', 'App\Http\Controllers\Api\ItemController@createItem');
-Route::put('items/{id}', 'App\Http\Controllers\Api\ItemController@updateItem');
-Route::delete('items/{id}','App\Http\Controllers\Api\ItemController@deleteItem');
+Route::post('/auth/register', [AuthController::class, 'register']);
+
+Route::post('/auth/login', [AuthController::class, 'login']);
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('/me', function(Request $request) {
+        return auth()->user();
+    });
+
+    Route::post('/auth/logout', [AuthController::class, 'logout']);
+});
+
+Route::group(['middleware' => 'auth:api'], function() {
+  //routes here
+  Route::get('items', 'App\Http\Controllers\Api\ItemController@getAllItems');
+  Route::get('items/{id}', 'App\Http\Controllers\Api\ItemController@getItem');
+  Route::post('items', 'App\Http\Controllers\Api\ItemController@createItem');
+  Route::put('items/{id}', 'App\Http\Controllers\Api\ItemController@updateItem');
+  Route::delete('items/{id}','App\Http\Controllers\Api\ItemController@deleteItem');
+});
