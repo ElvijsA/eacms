@@ -40,8 +40,8 @@ class ItemController extends Controller
       if (Item::where('id', $id)->exists()) {
         $item = Item::find($id);
 
-        $item->title = is_null($request->title) ? $item->title : $item->title;
-        $item->description = is_null($request->description) ? $item->description : $item->description;
+        $item->title = is_null($request->title) ? $item->title : $request->title;
+        $item->description = is_null($request->description) ? $item->description : $request->description;
         $item->save();
 
         return response()->json([
