@@ -27,7 +27,7 @@
                         <th class="px-4 py-2">ID</th>
                         <th class="px-4 py-2">Title</th>
                         <th class="text-left px-4 py-2">Description</th>
-                        <th class="px-4 py-2">Actions</th>
+                        <th class="text-right px-4 py-2 ">Actions</th>
                       </tr>
                   </thead>
                   <tbody class="border-b-2">
@@ -36,7 +36,7 @@
                           <td class=" px-4 py-2">{{$item->id}}</td>
                           <td class=" px-4 py-2">{{$item->title}}</td>
                           <td class=" px-4 py-2">{{$item->description}}</td>
-                          <td class=" px-4 py-2 flex">
+                          <td class=" px-4 py-2 flex justify-end">
                               <a href="{{ route('items.edit',$item->id)}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 focus:outline-none focus:shadow-outline">Edit</a>
                               <form action="{{ route('items.destroy', $item->id)}}" method="post">
                                 @csrf
