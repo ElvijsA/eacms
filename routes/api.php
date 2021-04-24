@@ -32,7 +32,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/auth/logout', [AuthController::class, 'logout']);
 });
 
-Route::group(['middleware' => 'auth:api'], function() {
+Route::group(['middleware' => 'auth:sanctum'], function() {
   //routes here
   Route::get('items', 'App\Http\Controllers\Api\ItemController@getAllItems');
   Route::get('items/{id}', 'App\Http\Controllers\Api\ItemController@getItem');
