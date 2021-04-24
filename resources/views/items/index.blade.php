@@ -49,6 +49,7 @@
                   </tbody>
                 </table>
 
+                <!-- PAGINATION -->
 
             </div>
         </div>
