@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Models\Project as ProjectModel;
+use App\Models\User;
 
 class ProjectController extends Controller
 {
