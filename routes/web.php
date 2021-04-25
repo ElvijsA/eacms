@@ -24,5 +24,9 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 Route::group(['middleware' => 'auth'], function() {
+  Route::resource('users', 'App\Http\Controllers\UserController');
   Route::resource('items', 'App\Http\Controllers\ItemController');
+  Route::resource('projects', 'App\Http\Controllers\ProjectController');
+  Route::get('projects/adduser/{id}',['as'=>'projects.adduser','uses'=>'App\Http\Controllers\ProjectController@adduser']);
+  Route::patch('projects/add/{id}',['as'=>'projects.add','uses'=>'App\Http\Controllers\ProjectController@add']);
 });

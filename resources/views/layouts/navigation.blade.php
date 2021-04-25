@@ -41,6 +41,8 @@
 
             <a href="{{ URL::to('items') }}"  class="{{ (request()->is('items*')) ? 'bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium' : 'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium ' }}">{{ __('Items') }}</a>
 
+            <a href="{{ URL::to('projects') }}"  class="{{ (request()->is('todos*')) ? 'bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium' : 'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium ' }}">{{ __('Todos') }}</a>
+
           </div>
         </div>
       </div>
@@ -75,7 +77,9 @@
           <div :class="{'block': profile, 'hidden': ! profile}" class="hidden forigin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
             <!-- Active: "bg-gray-100", Not Active: "" -->
             <a class="block px-4 py-2 text-sm text-gray-500" role="menuitem" tabindex="-1" id="user-menu-item-0">{{ Auth::user()->name }}</a>
-            <x-responsive-nav-link href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</x-responsive-nav-link>
+            <x-responsive-nav-link href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Profile</x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ URL::to('users') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">{{ __('Users') }}</x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ URL::to('projects') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">{{ __('Projects') }}</x-responsive-nav-link>
             <form method="POST" action="{{ route('logout') }}">
               @csrf
               <x-responsive-nav-link :href="route('logout')" onclick="event.preventDefault();
@@ -94,6 +98,9 @@
       <a href="{{ route('dashboard') }}" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">{{ __('Dashboard') }}</a>
 
       <a href="{{ route('items.index') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">{{ __('Items') }}</a>
+
+      <a href="{{ route('projects.index') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">{{ __('Projects') }}</a>
+
     </div>
   </div>
 </nav>
